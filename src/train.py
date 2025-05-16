@@ -60,13 +60,13 @@ def training_loop_with_eval(model, data_loader_train, data_loader_val, optimizer
         print(f"Model saved: {path}")
 
         # Evaluation on train
-        metrics_train = evaluate_mAP(model, data_loader_train, annotation_file_train, loud=False)
+        metrics_train = evaluate_mAP(model, data_loader_train, annotation_file_train)
         current_map_train = metrics_train["mAP"]
         map_train.append(current_map_train)
         print(f"[Train] mAP: {current_map_train:.4f}")
 
         # Evaluation on val
-        metrics_val = evaluate_mAP(model, data_loader_val, annotation_file_val, loud=False)
+        metrics_val = evaluate_mAP(model, data_loader_val, annotation_file_val)
         current_map_val = metrics_val["mAP"]
         map_val.append(current_map_val)
         print(f"[Val]   mAP: {current_map_val:.4f}")

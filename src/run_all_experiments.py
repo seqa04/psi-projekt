@@ -5,12 +5,12 @@ from src.train import training_loop_with_eval
 
 def run_all_experiments():
     experiments = [
+        {"lr": 0.005, "batch_size": 4, "momentum": 0.9, "model_name": "exp5", "freeze_backbone": True},
         {"lr": 0.005, "batch_size": 4, "momentum": 0.9, "model_name": "exp1", "freeze_backbone": False},
         {"lr": 0.001, "batch_size": 4, "momentum": 0.9, "model_name": "exp2", "freeze_backbone": False},
         {"lr": 0.005, "batch_size": 8, "momentum": 0.9, "model_name": "exp3", "freeze_backbone": False},
         {"lr": 0.005, "batch_size": 4, "momentum": 0.8, "model_name": "exp4", "freeze_backbone": False},
-        {"lr": 0.005, "batch_size": 4, "momentum": 0.9, "model_name": "exp5", "freeze_backbone": True},
-        {"lr": 0.005, "batch_size": 4, "momentum": 0.8, "model_name": "exp6", "freeze_backbone": True},
+        {"lr": 0.005, "batch_size": 4, "momentum": 0.8, "model_name": "exp6", "freeze_backbone": True}
     ]
 
     num_classes = 5
@@ -21,7 +21,7 @@ def run_all_experiments():
     device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
     for idx, exp in enumerate(experiments, start=1):
-        print(f"\n🧪 [{idx}/{len(experiments)}] Trening eksperymentu: {exp['model_name']}")
+        print(f"\n[{idx}/{len(experiments)}] Trening eksperymentu: {exp['model_name']}")
         print(f"   - lr={exp['lr']} | batch={exp['batch_size']} | momentum={exp['momentum']} | freeze_backbone={exp['freeze_backbone']}")
 
         train_loader, val_loader, _ = get_data_loaders(batch_size=exp["batch_size"])
